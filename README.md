@@ -12,6 +12,7 @@ The idea is to produce two main products :
 
 <h2> Project Organization </h2 >
 ------------
+
     ├── LICENSE
     ├── README.md          <- T e top-level README for developers using this project.
     |
@@ -27,6 +28,7 @@ The idea is to produce two main products :
         ├── app.py         <- Code of the application
         ├── models         <- Modeling data for the forecast application.
         └── data           <- Dataset used by the application
+     
 --------
 
 <p><small>Project based on the <a target="_blank" href="http://git.equancy.io/tools/cookiecutter-data-science-project/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
