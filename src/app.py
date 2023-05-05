@@ -1,25 +1,10 @@
 import pandas as pd
 import streamlit as st
 import plotting 
+import forecasting_utilities  as fu
 
-def generate_route_df(traffic_df: pd.DataFrame, homeAirport: str, pairedAirport: str) -> pd.DataFrame:
-  """Extract route dataframe from traffic dataframe for route from home airport to paired airport
 
-  Args:
-  - traffic_df (pd.DataFrame): traffic dataframe
-  - homeAirport (str): IATA Code for home airport
-  - pairedAirport (str): IATA Code for paired airport
 
-  Returns:
-  - pd.DataFrame: aggregated daily PAX traffic on route (home-paired)
-  """
-  _df = (traffic_df
-         .query('home_airport == "{home}" and paired_airport == "{paired}"'.format(home=homeAirport, paired=pairedAirport))
-         .groupby(['home_airport', 'paired_airport', 'date'])
-         .agg(pax_total=('pax', 'sum'))
-         .reset_index()
-         )
-  return _df
 HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
 PAIRED_AIRPORTS = ('FUE', 'AMS', 'ORY')
 
@@ -46,6 +31,7 @@ st.write('Date selected:', forecast_date)
 # Affichage de la table
 
 st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
-st.dataframe(generate_route_df(df,home_airport,paired_airport), width=600, height=300)
+st.dataframe(fu.generate_route_df(df,home_airport,paired_airport), width=600, height=300)
 
-st.plotly_chart(plotting.draw_ts_multiple(generate_route_df(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
+st.plotly_chart(plotting.draw_ts_multiple(fu.generate_route_df(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
+st.plotly_chart(plotting.draw_ts_multiple(fu.forecast_data(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
