@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
-import plotly.express as plt
+import plotting 
+
 
 def string_with_quote(str):
     return '"' + str +'"'
@@ -29,8 +30,8 @@ st.write('Date selected:', forecast_date)
 
 
 # Affichage de la table
-st.dataframe(df, width=600, height=300)
 
-st.plotly_chart(
-    plt.histogram(df.query('home_airport =='  + string_with_quote(home_airport) +'and paired_airport ==' + string_with_quote(paired_airport)),
-                         'date','pax'))
+st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
+st.dataframe(df.query('home_airport == "{home}" and paired_airport == "{paired}"'.format(home=home_airport, paired=paired_airport)).groupby(['home_airport', 'paired_airport', 'date']).agg(pax_total=('pax', 'sum')).reset_index(), width=600, height=300)
+
+st.plotly_chart(plotting.draw_ts_multiple((df.query('home_airport == "{home}" and paired_airport == "{paired}"'.format(home=home_airport, paired=paired_airport)).groupby(['home_airport', 'paired_airport', 'date']).agg(pax_total=('pax', 'sum')).reset_index()), 'pax_total', covid_zone=True,display=False))
