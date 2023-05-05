@@ -2,35 +2,33 @@ airtraffic
 ==============================
 
 Predict Air Traffic by routes
+============================
+<h1> Global concept </h1>
 
-Project Organization
+The idea is to produce two main products : 
+- One is a series of notebook allowing to explore the dataset, and train models on said dataset
+- Second is to create a streamlit apps allowing to access the result of the forecasting model set-up at with the notebook in a user friendly interface 
+
+
+<h1> Project Organization </h1>
 ------------
 
     ├── LICENSE
     ├── README.md          <- The top-level README for developers using this project.
-    │
-    ├── \_can_be_deleted   <- Trash bin (!! git ignored)
-    │
-    ├── confidential       <- Confidential documents, data, etc. (!! git ignored)
-    │
+    |
     ├── data               <- Directory to store data (not pushed to Git)
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── notebooks          <- Jupyter notebooks
+    ├── notebooks          <- Jupyter notebooks. Contains the training for the forecasting model,              
+    |                         data-exploration notebook 
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
+    │                         generated with 'pipreqs --force .'
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   ├── app.py         <- Code of the application
-    │   │
-    │   └── data           <- Dataset used by the application
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
-
+        ├── __init__.py    <- Makes src a Python module
+        ├── app.py         <- Code of the application
+        ├── models         <- Modeling data for the forecast application.
+        └── data           <- Dataset used by the application
+    
 
 --------
 
