@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
-import plotting 
-import forecasting_utilities  as fu
+from ..plotting import  draw_ts_multiple
+from ..forecasting_utilities  import generate_route_df,forecast_data
 
 
 
@@ -31,7 +31,7 @@ st.write('Date selected:', forecast_date)
 # Affichage de la table
 
 st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
-st.dataframe(fu.generate_route_df(df,home_airport,paired_airport), width=600, height=300)
+st.dataframe(generate_route_df(df,home_airport,paired_airport), width=600, height=300)
 
-st.plotly_chart(plotting.draw_ts_multiple(fu.generate_route_df(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
-st.plotly_chart(plotting.draw_ts_multiple(fu.forecast_data(df,home_airport,paired_airport,nb_days), 'pax_total', covid_zone=True,display=False))
+st.plotly_chart(draw_ts_multiple(generate_route_df(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
+st.plotly_chart(draw_ts_multiple(forecast_data(df,home_airport,paired_airport,nb_days), 'pax_total', covid_zone=True,display=False))
