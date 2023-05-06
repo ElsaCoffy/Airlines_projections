@@ -34,6 +34,7 @@ st.write('Date selected:', forecast_date)
 if run_forecast: 
     traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(["home_airport","paired_airport"])
 
+    print(traffic_df.head())
     st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
 
     st.markdown('## Table generated  from the forecast ')
