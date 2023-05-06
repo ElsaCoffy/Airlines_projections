@@ -32,7 +32,7 @@ st.write('Date selected:', forecast_date)
 
 
 if run_forecast: 
-    print(generate_route_df(df,home_airport,paired_airport).columns())
+    st.text(generate_route_df(df,home_airport,paired_airport).columns())
     traffic_df  = generate_route_df(df,home_airport,paired_airport)#.drop(["home_airport","paired_airport"])"
 
 
