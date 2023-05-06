@@ -58,6 +58,3 @@ def forecast_data(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :s
     return _forecastedData
 
 
-    
-def cleaning_forecasted_data(df_traffic: pd.DataFrame,forecastedData; pd.DataFrame)
-  
