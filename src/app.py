@@ -1,3 +1,4 @@
+import datetime
 import pandas as pd
 import streamlit as st
 from plotting import  draw_ts_multiple
@@ -5,8 +6,10 @@ from forecasting_utilities  import generate_route_df,forecast_data
 
 
      
-def end_date(date_forecast, date_fin_dataset): 
-    return 0 
+def end_date(date_forecast, date_fin_dataset,nb_days): 
+    if date_fin_dataset >= date_forecast+  datetime.timedelta(days=nb_days):
+        r
+    return -
 
 
 HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
@@ -47,5 +50,5 @@ if run_forecast:
 
     # 
 
-    st.plotly_chart(draw_ts_multiple(generate_route_df(df,home_airport,paired_airport), 'pax_total', covid_zone=True,display=False))
+    st.plotly_chart(draw_ts_multiple(traffic_df, 'pax_total', covid_zone=True,display=False))
     st.plotly_chart(draw_ts_multiple(forecast_data(df,home_airport,paired_airport,nb_days), 'pax_total', covid_zone=True,display=False))
