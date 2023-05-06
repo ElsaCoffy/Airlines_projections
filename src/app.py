@@ -37,7 +37,7 @@ if run_forecast:
     traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"])
     traffic_df= traffic_df.query('date <= "{comparison}"'.format(comparison=forecast_date))
     ## Doing the forecasting 
-    traffic_df["prediction"] = [ Null for k in range(traffic_df['date'].size)]
+    traffic_df["prediction"] = [ None for k in range(traffic_df['date'].size)]
 
 
     st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
