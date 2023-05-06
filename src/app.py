@@ -39,7 +39,7 @@ if run_forecast:
     st.markdown('## Table generated  from the forecast ')
 
 
-    st.dataframe(, width=600, height=300)
+    st.dataframe(traffic_df, width=600, height=300)
 
     # 
 
