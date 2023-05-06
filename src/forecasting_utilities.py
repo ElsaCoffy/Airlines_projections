@@ -58,3 +58,16 @@ def forecast_data(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :s
     return _forecastedData
 
 
+    
+
+def cleaning_forecasted_data(df_traffic: pd.DataFrame,forecastedData: pd.DataFrame):
+  """Return a panda Dataframe ready for plotting, with the predicted data in a column 
+    Args: 
+    df_traffic (pd.DataFrame) : the traffic data frame
+    forecastedData : the forecasted data
+
+  
+
+
+
+  """
