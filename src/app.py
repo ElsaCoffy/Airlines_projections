@@ -5,6 +5,7 @@ from forecasting_utilities  import generate_route_df,forecast_data
 
 
      
+def end_date(date_forecast, date_fin_dataset): 
 
 
 
@@ -33,7 +34,8 @@ st.write('Date selected:', forecast_date)
 
 if run_forecast: 
     st.text(generate_route_df(df,home_airport,paired_airport).columns)
-    traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"])
+    traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"]).query("where date <= '{date}'".format(date==forecast_date))
+
 
 
     print(traffic_df.head())
