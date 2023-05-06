@@ -33,7 +33,7 @@ st.write('Date selected:', forecast_date)
 
 if run_forecast: 
     print(generate_route_df(df,home_airport,paired_airport).head())
-    traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(["home_airport","paired_airport"])
+    traffic_df  = generate_route_df(df,home_airport,paired_airport)#.drop(["home_airport","paired_airport"])"
 
 
     print(traffic_df.head())
