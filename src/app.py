@@ -33,17 +33,16 @@ st.write('Date selected:', forecast_date)
 
 
 if run_forecast: 
-    st.text(type(forecast_date))
+    ## Getting the historical traffic data 
     traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"])
     traffic_df= traffic_df.query('date <= "{comparison}"'.format(comparison=forecast_date))
+    ## Doing the forecasting 
+    traffic_df["prediction"] = [ Null for Null in range(traffic_df['date'].size)]
 
 
-    print(traffic_df.head())
     st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
 
     st.markdown('## Table generated  from the forecast ')
-
-
     st.dataframe(traffic_df, width=600, height=300)
 
     # 
