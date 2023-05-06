@@ -8,8 +8,8 @@ from forecasting_utilities  import generate_route_df,forecast_data
      
 def end_date(date_forecast, date_fin_dataset,nb_days): 
     if date_fin_dataset >= date_forecast+  datetime.timedelta(days=nb_days):
-        r
-    return -
+        return 0
+    return 0
 
 
 HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
