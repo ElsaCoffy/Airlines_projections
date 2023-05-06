@@ -6,7 +6,7 @@ from forecasting_utilities  import generate_route_df,forecast_data
 
      
 def end_date(date_forecast, date_fin_dataset): 
-
+    return 0 
 
 
 HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
