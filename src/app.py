@@ -51,4 +51,4 @@ if run_forecast:
     # 
 
     st.plotly_chart(draw_ts_multiple(traffic_df, 'pax_total', covid_zone=True,display=False))
-    st.plotly_chart(draw_ts_multiple(forecast_data(df.rename(columns={'ds': 'date', 'yhat': 'pax_total'}),home_airport,paired_airport,nb_days), 'pax_total', covid_zone=True,display=False))
+    st.plotly_chart(draw_ts_multiple(forecast_data(df,home_airport,paired_airport,nb_days).rename(columns={'ds': 'date', 'yhat': 'pax_total'}), 'pax_total', covid_zone=True,display=False))
