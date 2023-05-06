@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
-from ..plotting import  draw_ts_multiple
-from ..forecasting_utilities  import generate_route_df,forecast_data
+from plotting import  draw_ts_multiple
+from forecasting_utilities  import generate_route_df,forecast_data
 
 
 
