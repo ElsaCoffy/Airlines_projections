@@ -33,7 +33,7 @@ st.write('Date selected:', forecast_date)
 
 
 if run_forecast: 
-    st.text(generate_route_df(df,home_airport,paired_airport).columns)
+    st.text(type(generate_route_df(df,home_airport,paired_airport)[date][0]))
     traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"])
     traffic_df= traffic_df.query("date <= '{date}'".format(date==forecast_date))
 
