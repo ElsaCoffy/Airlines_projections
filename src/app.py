@@ -38,7 +38,7 @@ if run_forecast:
     ## Doing the forecasting 
 
     if traffic_df.empty:
-        st.markdown((' Nous ne disposons pas de données sur la route demandée'))
+        st.markdown(('# Nous ne disposons pas de données sur la route demandée'))
     else :
         complete_data = forecast_data(df,home_airport,paired_airport,nb_days,forecast_date)
         complete_data=  complete_data.rename(columns={'ds': 'date', 'yhat': 'prediction'})[['date','prediction']]
@@ -46,5 +46,6 @@ if run_forecast:
         st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
         st.markdown('## Table generated  from the forecast')
         st.dataframe(complete_data, width=600, height=300)
+        st.markdown('## Graph of the total number of pax, and the forecasted data')
         st.plotly_chart(draw_ts_multiple(complete_data, 'pax_total', covid_zone=True,display=False,prediction ='prediction'))
 
