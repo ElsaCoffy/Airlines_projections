@@ -2,11 +2,6 @@ import prophet
 import pandas as pd
 import datetime
 
-def end_date(date_forecast, date_fin_dataset,nb_days): 
-    if date_fin_dataset >= date_forecast+  datetime.timedelta(days=nb_days):
-        return 0
-    return 0
-
 
 def generate_route_df(traffic_df: pd.DataFrame, homeAirport: str, pairedAirport: str) -> pd.DataFrame:
   """Extract route dataframe from traffic dataframe for route from home airport to paired airport
@@ -59,24 +54,20 @@ def forecast_data(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :s
     Returns:
     -_forecastedData (pd.DataFrame) : the forecasted data from the model, with their contribution.
     """
+
     _model = training_model(traffic_df,homeAirport,pairedAirport)
-    futureDf = _model.make_future_dataframe(periods=forecastingRange)
-    print(futureDf.head())
+    # We generate the futureDf of the timestamps to forecast based on the parameters asked. We do not use the built-in function because it wouldn't handle the case where 
+    # forecastingDateStart is prior to the latest historical data available. 
+    traffic_df = generate_route_df(traffic_df,homeAirport,pairedAirport)
+    if traffic_df['date'].min() < forecastingDateStart: 
+      DateStart = traffic_df['date'].min()
+    else :
+      DateStart= forecastingDateStart
+    
+    future_date = pd.date_range(DateStart, forecastingDateStart + datetime.timedelta(days= forecastingRange)).to_frame(index=False, name='ds')
+    historic_date = traffic_df.query('date < "{comparison}"'.format(comparison=forecastingDateStart)).rename(columns={'date' : 'ds'}).loc[:,['ds']]
+    futureDf = pd.concat([historic_date,future_date])
+
     _forecastedData = _model.predict(futureDf)
-    print(_forecastedData.head())
     return _forecastedData
 
-
-    
-
-def cleaning_forecasted_data(df_traffic: pd.DataFrame,forecastedData: pd.DataFrame):
-  """Return a panda Dataframe ready for plotting, with the predicted data in a column 
-    Args: 
-    df_traffic (pd.DataFrame) : the traffic data frame
-    forecastedData : the forecasted data
-  
-  
-
-
-
-  """
