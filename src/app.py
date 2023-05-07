@@ -48,8 +48,7 @@ if run_forecast:
 
     st.markdown('# Table des vols, pour la destination choisie, avec le nombre de passager total par jour')
 
-    st.markdown('## Table generated  from the forecast ')
-    st.dataframe(traffic_df, width=600, height=300)
+    st.markdown('## Table generated  from the forecast')
     st.dataframe(complete_data, width=600, height=300)
 
     st.plotly_chart(draw_ts_multiple(complete_data, 'pax_total', covid_zone=True,display=False,prediction ='prediction'))
