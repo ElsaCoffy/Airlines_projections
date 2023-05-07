@@ -6,10 +6,7 @@ from forecasting_utilities  import generate_route_df,forecast_data
 
 
      
-def end_date(date_forecast, date_fin_dataset,nb_days): 
-    if date_fin_dataset >= date_forecast+  datetime.timedelta(days=nb_days):
-        return 0
-    return 0
+
 
 
 HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
@@ -51,4 +48,4 @@ if run_forecast:
     # 
 
     st.plotly_chart(draw_ts_multiple(traffic_df, 'pax_total', covid_zone=True,display=False))
-    st.plotly_chart(draw_ts_multiple(forecast_data(df,home_airport,paired_airport,nb_days).rename(columns={'ds': 'date', 'yhat': 'pax_total'}), 'pax_total', covid_zone=True,display=False))
+    st.plotly_chart(draw_ts_multiple(forecast_data(df,home_airport,paired_airport,nb_days,forecast_date).rename(columns={'ds': 'date', 'yhat': 'pax_total'}), 'pax_total', covid_zone=True,display=False))
