@@ -9,8 +9,8 @@ from forecasting_utilities  import generate_route_df,forecast_data
 
 
 
-HOME_AIRPORTS = ('LGW', 'LIS', 'LYS')
-PAIRED_AIRPORTS = ('FUE', 'AMS', 'ORY')
+HOME_AIRPORTS = ('LGW','LIS','LYS','PNH','SCL','SSA')
+PAIRED_AIRPORTS = ('AMS','BCN','OPO','ORY','PIS','FUE','NGB','JFK','LHR','GRU')
 
 df = pd.read_parquet('src/data/traffic_10lines.parquet')
 
