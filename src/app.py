@@ -34,7 +34,7 @@ st.write('Paired Airport selected:', paired_airport)
 st.write('Days of forecast:', nb_days)
 st.write('Date selected:', forecast_date)
 
-
+st.write(type(forecast_date))
 if run_forecast: 
     ## Getting the historical traffic data 
     traffic_df  = generate_route_df(df,home_airport,paired_airport).drop(columns=["home_airport","paired_airport"])
