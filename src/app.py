@@ -40,11 +40,10 @@ if run_forecast:
 
     complete_data = forecast_data(df,home_airport,paired_airport,nb_days,forecast_date)
 
-    print(complete_data.head())
     complete_data=  complete_data.rename(columns={'ds': 'date', 'yhat': 'prediction'})
     st.text(traffic_df.dtypes)
     st.text(complete_data.dtypes)
-    complete_data.join(traffic_df, on ='date',sort=True)
+    complete_data.merge(traffic_df, on ='date',sort=True)
 
     print(complete_data.head())
     print(complete_data.tail())
