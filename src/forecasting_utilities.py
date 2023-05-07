@@ -1,5 +1,11 @@
 import prophet
 import pandas as pd
+import datetime
+
+def end_date(date_forecast, date_fin_dataset,nb_days): 
+    if date_fin_dataset >= date_forecast+  datetime.timedelta(days=nb_days):
+        return 0
+    return 0
 
 
 def generate_route_df(traffic_df: pd.DataFrame, homeAirport: str, pairedAirport: str) -> pd.DataFrame:
@@ -39,20 +45,23 @@ def training_model(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :
     return _model       
 
 
-def forecast_data(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :str, forecastingRange: int): 
+def forecast_data(traffic_df : pd.DataFrame, homeAirport: str,  pairedAirport :str, forecastingRange: int, forecastingDateStart : datetime.date): 
 
-    """Create a Prophet model, trains it and uses it to predict traffic dataframe for the route from home airport to paired airport 
+    """Create a Prophet model, trains it and uses it to predict traffic dataframe for the route from home airport to paired airport. 
+    The training happens on all the historical data. However, the evaluation of the data
 
     Args:
     - traffic_df (pd.DataFrame): traffic dataframe
     - homeAirport (str): IATA Code for home airport
     - pairedAirport (str): IATA Code for paired airport 
-    - forecastingRange (int): 
+    - forecastingRange (int): Number of date to forecast
+    - forecastingDateStart (date ):  Day of the start of forecasted data
     Returns:
     -_forecastedData (pd.DataFrame) : the forecasted data from the model, with their contribution.
     """
     _model = training_model(traffic_df,homeAirport,pairedAirport)
     futureDf = _model.make_future_dataframe(periods=forecastingRange)
+    print(futureDf.head())
     _forecastedData = _model.predict(futureDf)
     print(_forecastedData.head())
     return _forecastedData
@@ -65,7 +74,7 @@ def cleaning_forecasted_data(df_traffic: pd.DataFrame,forecastedData: pd.DataFra
     Args: 
     df_traffic (pd.DataFrame) : the traffic data frame
     forecastedData : the forecasted data
-
+  
   
 
 
