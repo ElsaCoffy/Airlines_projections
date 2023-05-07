@@ -42,8 +42,8 @@ if run_forecast:
 
     print(complete_data.head())
     complete_data=  complete_data.rename(columns={'ds': 'date', 'yhat': 'prediction'})
-    st.text(traffic_df.columns)
-    st.text(complete_data.columns)
+    st.text(traffic_df.dtypes)
+    st.text(complete_data.dtypes)
     complete_data.join(traffic_df, on ='date',sort=True)
 
     print(complete_data.head())
