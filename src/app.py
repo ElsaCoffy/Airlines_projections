@@ -41,7 +41,7 @@ if run_forecast:
 
     complete_data=  complete_data.rename(columns={'ds': 'date', 'yhat': 'prediction'})
 
-    complete_data.merge(traffic_df, on ='date',sort=True)
+    complete_data.merge(traffic_df, on ='date', how = 'left',sort=True)
 
 
 
